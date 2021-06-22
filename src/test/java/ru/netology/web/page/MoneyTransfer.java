@@ -2,6 +2,7 @@ package ru.netology.web.page;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import ru.netology.web.data.DataHelper;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -12,19 +13,24 @@ public class MoneyTransfer {
     private final SelenideElement button = $("[data-test-id=action-transfer]");
     private final SelenideElement cancelButton = $("[data-test-id=action-cancel]");
     private final SelenideElement error = $("[data-test-id=error-notification]");
-    private String transferAmount;
-    private int cardForTranslation;
-
-    public MoneyTransfer(String transferAmount, int cardForTranslation) {
-        this.transferAmount = transferAmount;
-        this.cardForTranslation = cardForTranslation;
-    }
 
     public MoneyTransfer() {
         heading.shouldBe(Condition.visible);
     }
 
+    public DashboardPage transferForm(String sum, DataHelper.CardNumber cardNumber) {
+        amount.setValue(sum);
+        from.setValue(String.valueOf(cardNumber));
+        button.click();
+        return new DashboardPage();
+    }
+
     public void getError() {
         error.shouldBe(Condition.visible);
+    }
+
+    public DashboardPage cancelButton() {
+        cancelButton.click();
+        return new DashboardPage();
     }
 }

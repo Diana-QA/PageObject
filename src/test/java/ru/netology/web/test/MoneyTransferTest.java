@@ -17,10 +17,10 @@ class MoneyTransferTest {
   }
 
   @Test
-  void shouldTransferMoneyBetweenOwnCardsV2() {
+  void shouldTransferMoneyBetweenOwnCards() {
     open("http://localhost:9999");
     var loginPage = new LoginPage();
-//    var loginPage = open("http://localhost:9999", LoginPageV2.class);
+//    var loginPage = open("http://localhost:9999", LoginPage.class);
     var authInfo = DataHelper.getAuthInfo();
     var verificationPage = loginPage.validLogin(authInfo);
     var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
