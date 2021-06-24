@@ -15,14 +15,6 @@ public class MoneyTransfer {
     private final SelenideElement cancelButton = $("[data-test-id=action-cancel]");
     private final SelenideElement error = $("[data-test-id=error-notification]");
 
-    public int getAmount(int amount) {
-        return amount;
-    }
-
-    public SelenideElement getButton() {
-        return button;
-    }
-
     public MoneyTransfer() {
         heading.shouldBe(Condition.visible);
     }

@@ -3,6 +3,7 @@ package ru.netology.web.test;
 import com.codeborne.selenide.Configuration;
 import lombok.val;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import ru.netology.web.data.DataHelper;
 import ru.netology.web.page.LoginPage;
@@ -71,8 +72,9 @@ class MoneyTransferTest {
     val verificationCode = DataHelper.getVerificationCodeFor(authInfo);
     val dashboardPage = verificationPage.validVerify(verificationCode);
     val moneyTransfer = dashboardPage.secondCardButton();
-    moneyTransfer.getAmount(20000);
-    moneyTransfer.getButton().click();
+    val infocard = DataHelper.getFirstCardNumber();
+    String sum = "11000";
+    moneyTransfer.transferForm(sum, infocard);
     moneyTransfer.getError();
   }
 }
